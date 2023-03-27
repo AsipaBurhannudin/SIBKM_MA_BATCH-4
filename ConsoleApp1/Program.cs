@@ -26,11 +26,11 @@ public class Program
         //UpdateRegions(5, "Region new");
         //DeleteRegions(6);       
 
-        //GetAllCountrys();
+        GetAllCountrys();
         //GetByIdCountrys("AR");
         //InsertCountrys("ZX" , "Zhasx" , 2);
         //UpdateCountrys("ZM", "Zambia");
-        //DeleteCountrys
+        //DeleteCountrys("ZX");
     }
 
     //GET ALL
@@ -422,7 +422,7 @@ public class Program
     }
 
     // DELETE : Countrys
-    public static void DeleteCountrys(int id)
+    public static void DeleteCountrys(string id)
     {
         connection = new SqlConnection(connectionString);
         connection.Open();
@@ -438,7 +438,7 @@ public class Program
 
             SqlParameter pId = new SqlParameter();
             pId.ParameterName = "@id";
-            pId.SqlDbType = System.Data.SqlDbType.Int;
+            pId.SqlDbType = System.Data.SqlDbType.VarChar;
             pId.Value = id;
             command.Parameters.Add(pId);
 
