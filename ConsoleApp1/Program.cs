@@ -21,19 +21,21 @@ public class Program
         }*/
 
         //GetAllRegion();
-        //GetByIdRegions(2);
-        //InsertRegions("Region Baru");
-        //UpdateRegions(5, "Region new");
-        //DeleteRegions(6);       
+        //GetByIdRegion(2);
+        //InsertRegion("South East");
+        //UpdateRegion(6, "South East Asia");
+        //DeleteRegion(6);       
 
-        GetAllCountrys();
-        //GetByIdCountrys("AR");
-        //InsertCountrys("ZX" , "Zhasx" , 2);
-        //UpdateCountrys("ZM", "Zambia");
-        //DeleteCountrys("ZX");
+        //GetAllCountry();
+        //GetByIdCountry("AM");
+        //InsertCountry("AM" , "Armenia" , 1);
+        //UpdateCountry("AM", "Alabama");
+        //DeleteCountry("AM");
+
+
     }
 
-    //GET ALL
+    //GET ALL REGION
     public static void GetAllRegion()
     {
         //Membuat Instance SQL Server Connection
@@ -42,7 +44,7 @@ public class Program
         //membuat instance sql command
         SqlCommand command = new SqlCommand();
         command.Connection = connection;
-        command.CommandText = "Select * From regions;";
+        command.CommandText = "Select * From region;";
 
         connection.Open();
         using SqlDataReader reader = command.ExecuteReader();
@@ -63,15 +65,15 @@ public class Program
         connection.Close();
     }
 
-    //Get BY ID : Regions
-    public static void GetByIdRegions(int id)
+    //GET BY ID : Region
+    public static void GetByIdRegion(int id)
     {
         connection = new SqlConnection(connectionString);
 
         //membuat instance sql command
         SqlCommand command = new SqlCommand();
         command.Connection = connection;
-        command.CommandText = "Select * From regions where id = @id;";
+        command.CommandText = "Select * From region where id = @id;";
 
         //membuat instance sql parameter
         SqlParameter pId = new SqlParameter();
@@ -97,9 +99,8 @@ public class Program
         connection.Close();
     }
 
-    //
-    // INSERT : Regions
-    public static void InsertRegions(string name)
+    // INSERT : Region
+    public static void InsertRegion(string name)
     {
         connection = new SqlConnection(connectionString);
         connection.Open();
@@ -110,7 +111,7 @@ public class Program
         {
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
-            command.CommandText = "Insert Into regions (name) Values (@name);";
+            command.CommandText = "Insert Into region (name) Values (@name);";
             command.Transaction = transaction;
 
             SqlParameter pName = new SqlParameter();
@@ -141,7 +142,7 @@ public class Program
     }
 
     // UPDATE : Region
-    public static void UpdateRegions(int id, string name)
+    public static void UpdateRegion(int id, string name)
     {
         connection = new SqlConnection(connectionString);
         connection.Open();
@@ -152,7 +153,7 @@ public class Program
         {
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
-            command.CommandText = "Update regions Set name = @name Where id = @id;";
+            command.CommandText = "Update region Set name = @name Where id = @id;";
             command.Transaction = transaction;
 
             SqlParameter pName = new SqlParameter();
@@ -196,7 +197,7 @@ public class Program
     }
 
     // DELETE : Region
-    public static void DeleteRegions(int id)
+    public static void DeleteRegion(int id)
     {
         connection = new SqlConnection(connectionString);
         connection.Open();
@@ -207,7 +208,7 @@ public class Program
         {
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
-            command.CommandText = "Delete From regions Where id = @id;";
+            command.CommandText = "Delete From region Where id = @id;";
             command.Transaction = transaction;
 
             SqlParameter pId = new SqlParameter();
@@ -244,8 +245,10 @@ public class Program
         }
     }
 
-    // GET ALL : Countrys
-    public static void GetAllCountrys()
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+    // GET ALL : Country
+    public static void GetAllCountry()
     {
         // Membuat instance SQL Server Connection
         connection = new SqlConnection(connectionString);
@@ -253,7 +256,7 @@ public class Program
         // Membuat instance SQL Command
         SqlCommand command = new SqlCommand();
         command.Connection = connection;
-        command.CommandText = "Select * From countrys;";
+        command.CommandText = "Select * From country;";
 
         connection.Open();
         using SqlDataReader reader = command.ExecuteReader();
@@ -269,14 +272,14 @@ public class Program
         }
         else
         {
-            Console.WriteLine("Countrys is Empty!");
+            Console.WriteLine("Country is Empty!");
         }
         reader.Close();
         connection.Close();
     }
 
-    // GET BY ID : Countrys
-    public static void GetByIdCountrys(string id)
+    // GET BY ID : Country
+    public static void GetByIdCountry(string id)
     {
         // Membuat instance SQL Server Connection
         connection = new SqlConnection(connectionString);
@@ -284,7 +287,7 @@ public class Program
         // Membuat instance SQL Command
         SqlCommand command = new SqlCommand();
         command.Connection = connection;
-        command.CommandText = "Select * From countrys Where id = @id;";
+        command.CommandText = "Select * From country Where id = @id;";
 
         // Membuat instance SQL Parameter
         SqlParameter pId = new SqlParameter();
@@ -312,8 +315,8 @@ public class Program
         connection.Close();
     }
 
-    // INSERT : Countrys
-    public static void InsertCountrys(string id, string name, int region)
+    // INSERT : Country
+    public static void InsertCountry(string id, string name, int region)
     {
         connection = new SqlConnection(connectionString);
         connection.Open();
@@ -324,7 +327,7 @@ public class Program
         {
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
-            command.CommandText = "Insert Into countrys (id,name,region) Values (@id,@name,@region);";
+            command.CommandText = "Insert Into country (id,name,region) Values (@id,@name,@region);";
             command.Transaction = transaction;
 
             SqlParameter pId = new SqlParameter();
@@ -366,8 +369,8 @@ public class Program
         }
     }
 
-    // UPDATE : Countrys
-    public static void UpdateCountrys(string id, string name)
+    // UPDATE : Country
+    public static void UpdateCountry(string id, string name)
     {
         connection = new SqlConnection(connectionString);
         connection.Open();
@@ -378,7 +381,7 @@ public class Program
         {
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
-            command.CommandText = "Update countrys Set name = @name Where id = @id;";
+            command.CommandText = "Update country Set name = @name Where id = @id;";
             command.Transaction = transaction;
 
             SqlParameter pName = new SqlParameter();
@@ -421,8 +424,8 @@ public class Program
         }
     }
 
-    // DELETE : Countrys
-    public static void DeleteCountrys(string id)
+    // DELETE : Country
+    public static void DeleteCountry(string id)
     {
         connection = new SqlConnection(connectionString);
         connection.Open();
@@ -433,7 +436,7 @@ public class Program
         {
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
-            command.CommandText = "Delete From countrys Where id = @id;";
+            command.CommandText = "Delete From country Where id = @id;";
             command.Transaction = transaction;
 
             SqlParameter pId = new SqlParameter();
