@@ -118,7 +118,7 @@ public class RegionRepository : IRegionRepository
             {
                 transaction.Rollback();
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 throw;
             }
@@ -131,6 +131,7 @@ public class RegionRepository : IRegionRepository
     {
         var connection = MyContext.GetConnection();
 
+
         SqlCommand command = new SqlCommand();
         command.Connection = connection;
         command.CommandText = "Update region Set name = @Name Where id = @Id;";
@@ -142,6 +143,7 @@ public class RegionRepository : IRegionRepository
         connection.Close();
 
         return result;
+           
     }
 
     public int Delete(int id)

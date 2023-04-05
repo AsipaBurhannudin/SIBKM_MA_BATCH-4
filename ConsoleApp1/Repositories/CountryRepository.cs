@@ -26,19 +26,6 @@ public class CountryRepository : ICountryRepository
         {
             while (reader.Read())
             {
-                // alt 1
-                /*Region region = new Region();
-                region.Id = reader.GetInt32(0);
-                region.Name = reader.GetString(1);*/
-
-                // alt 2
-                /*Region region = new Region {
-                    Id = reader.GetInt32(0),
-                    Name = reader.GetString(1)
-                };
-                regions.Add(region);*/
-
-                // alt 3
                 countries.Add(new Country
                 {
                     Id = reader.GetString(0),
@@ -131,7 +118,7 @@ public class CountryRepository : ICountryRepository
             {
                 transaction.Rollback();
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 throw;
             }

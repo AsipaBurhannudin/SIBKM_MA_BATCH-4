@@ -92,7 +92,24 @@ public class Program
                     Console.ReadKey();
                     break;
                 case 4:
-                    //Update
+                    Console.Clear();
+                    Console.WriteLine("=======Update Region========");
+                    Console.Write("Input Id: ");
+                    var Id = Convert.ToInt32(Console.ReadLine());
+                    Region regionToUpdate = regionController.GetById(Id);
+                    if (regionToUpdate != null)
+                    {
+                        Console.Write($"Input new name for {regionToUpdate.Name}: ");
+                        string newName = Console.ReadLine();
+                        regionToUpdate.Name = newName;
+                        regionController.Update(regionToUpdate);
+                        Console.WriteLine($"Region with id {Id} updated successfully!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Country not found!");
+                    }
+                    Console.ReadKey();
                     break;
                 case 5:
                     Console.Clear();
@@ -155,7 +172,7 @@ public class Program
                     Country country = countryController.GetById(id);
                     if (country != null)
                     {
-                        Console.WriteLine($"Id: {country.Id}, Name: {country.Name}");
+                        Console.WriteLine($"Id: {country.Id}, Name: {country.Name}, Region: {country.Region}");
                     }
                     else
                     {
@@ -183,21 +200,21 @@ public class Program
                     break;
                 case 4:
                     Console.Clear();
-                    Console.WriteLine("=======Update Country========");
-                    Console.Write("Input Id: ");
+                    Console.WriteLine("=======Update Country Name========");
+                    Console.Write("Input ID : ");
                     var Id = Console.ReadLine();
                     Country countryToUpdate = countryController.GetById(Id);
                     if (countryToUpdate != null)
                     {
-                        Console.Write($"Input new name for {countryToUpdate.Name}: ");
-                        string newName = Console.ReadLine();
-                        countryToUpdate.Name = newName;
-                        countryController.Update(countryToUpdate);
-                        Console.WriteLine($"Region with id {Id} updated successfully!");
+                    Console.Write($"Input new name for {countryToUpdate.Name}: ");
+                    string newName = Console.ReadLine();
+                    countryToUpdate.Name = newName;
+                    countryController.Update(countryToUpdate);
+                    Console.WriteLine($"Region with id {Id} updated successfully!");
                     }
                     else
                     {
-                        Console.WriteLine("Country not found!");
+                     Console.WriteLine("Country not found!");
                     }
                     Console.ReadKey();
                     break;
